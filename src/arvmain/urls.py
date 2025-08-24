@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from . import views
+from products.views import CategoryListView, CategoryCreateView
 
 ON_CODESPACE = settings.ON_CODESPACE
 
@@ -29,6 +30,8 @@ urlpatterns = [
      # Application
     path('', views.index_view, name='index'),
     path('about/', views.about_view, name='about'),
+    path('categories/', CategoryListView.as_view(), name='categories'),
+    path('add-category/', CategoryCreateView.as_view(), name='add-category'),
 ]
 
 if ON_CODESPACE:

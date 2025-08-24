@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'commando',
+    'products',
+    'userupload',
     # Third party app
     'allauth',
     'allauth.account',

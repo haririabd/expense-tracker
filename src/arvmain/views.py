@@ -11,7 +11,7 @@ def index_view(request, *args, **kwargs):
 
 def about_view(request, *args, **kwargs):
     page_title = 'About'
-    html_template = 'landingpage/page/index.html'
+    html_template = 'landingpage/page/book_list.html'
 
     context = {
         "page_title": page_title,
