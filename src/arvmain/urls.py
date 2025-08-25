@@ -32,6 +32,8 @@ urlpatterns = [
     path('about/', views.about_view, name='about'),
     path('categories/', CategoryListView.as_view(), name='categories'),
     path('add-category/', CategoryCreateView.as_view(), name='add-category'),
+    # Sample Page
+    path('blank/', views.blank_view, name='blank'),
 ]
 
 if ON_CODESPACE:
