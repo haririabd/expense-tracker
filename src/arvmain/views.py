@@ -18,9 +18,19 @@ def about_view(request, *args, **kwargs):
     }
     return render(request, html_template, context)
 
+# Dashboard Views Start
+def dashboard_view(request, *args, **kwargs):
+    page_title = 'Dashboard'
+    html_template = 'dashboard/page/blank.html'
+
+    context = {
+        "page_title": page_title,
+    }
+    return render(request, html_template, context)
+
 def blank_view(request, *args, **kwargs):
     page_title = 'Blank Page'
-    html_template = 'dashboard/blank.html'
+    html_template = 'dashboard/page/blank.html'
 
     context = {
         "page_title": page_title,
