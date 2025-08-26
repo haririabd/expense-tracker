@@ -14,9 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
-from django.urls import path, include
+from userupload.views import add_category_csv
 from . import views
 from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 
@@ -36,6 +37,8 @@ urlpatterns = [
     path('add-category/', CategoryCreateView.as_view(), name='add-category'),
     path('edit-category/<int:pk>/', CategoryUpdateView.as_view(), name='edit-category'),
     path('delete-category/<int:pk>/', CategoryDeleteView.as_view(),name='delete-category'),
+    # user upload
+    path('add-category/upload/', add_category_csv, name='add-category-csv'),
     # Sample Page
     path('blank/', views.blank_view, name='blank'),
 ]
