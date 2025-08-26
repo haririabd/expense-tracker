@@ -1,0 +1,27 @@
+{% extends 'dashboard/base/base.html' %}{% load static %} {% block content %}
+<div class="card my-5 mx-auto" style="max-width: 50vw;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'img/studio-media-9DaOYUYnOls-unsplash.jpg' %}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{page_title}}</h5>
+        <p class="card-text mt-5">Please enter category name only in below field. This name should be unique and non-repeatable; system will give an error if existing category is being entered again</p>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        <div class="form-floating">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">
+                Save Category
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

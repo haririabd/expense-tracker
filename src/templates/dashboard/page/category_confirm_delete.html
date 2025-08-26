@@ -1,0 +1,31 @@
+{% extends 'dashboard/base/base.html' %}{% load static %} {% block content %}
+<div class="card my-5 mx-auto text-bg-light" style="max-width: 50vw;">
+  <div class="row g-0">
+    <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <svg class="nav-icon">
+          <use
+            xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-warning' %}"
+          ></use>
+        </svg>
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title">{{page_title}}</h5>
+        <p class="card-text mt-5">Warning! You are about to delete a category. Deleting this will also delete all books currently tagged under this category</p>
+        <p class="card-text"><small class="text-body-secondary">Category Name: {{object.name}}</small></p>
+        <div class="form-floating">
+          <form method="post">
+            {% csrf_token %}
+            <p>Are you sure?</p>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-danger">
+                Yes, Delete. Let the world burn 
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

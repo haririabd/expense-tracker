@@ -37,25 +37,25 @@
         Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a
       >
     </li>
-    <li class="nav-title">Theme</li>
+    <li class="nav-title">Categories</li>
     <li class="nav-item">
-      <a class="nav-link" href="colors.html">
+      <a class="nav-link" href="{% url 'categories' %}">
         <svg class="nav-icon">
           <use
             xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-drop' %}"
           ></use>
         </svg>
-        Colors</a
+        Category List</a
       >
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="typography.html">
+      <a class="nav-link" href="{% url 'add-category' %}">
         <svg class="nav-icon">
           <use
             xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-pencil' %}"
           ></use>
         </svg>
-        Typography</a
+        Add Category</a
       >
     </li>
     <li class="nav-title">Components</li>
