@@ -1,14 +1,13 @@
 {% extends 'dashboard/base/base.html' %}{% load static %} {% block content %}
 <div class="card my-5 mx-auto">
   <div class="row g-0">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <img src="{% static 'img/studio-media-9DaOYUYnOls-unsplash.jpg' %}" class="img-fluid rounded-start" alt="...">
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
+    <div class="col-md-9">
+      <div class="card-body p-md-5">
         <h5 class="card-title">{{page_title}}</h5>
         <p class="card-text mt-5">Please enter category name only in below field. This name should be unique and non-repeatable; system will give an error if existing category is being entered again</p>
-        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
         <div class="form-floating">
           <form method="post">
             {% csrf_token %}
@@ -20,6 +19,19 @@
             </div>
           </form>
         </div>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        <a href="{% url 'add-category-csv' %}">
+        <button class="btn btn-link" type="button">
+          <svg
+        class="sidebar-brand-narrow"
+        width="25"
+        height="25"
+        alt="Bulk Upload"
+      >
+        <use
+          xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-cloud-upload' %}"
+        ></use>
+      </svg><span class="ms-1">Bulk Upload</span></button></a>
       </div>
     </div>
   </div>
