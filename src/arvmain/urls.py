@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.conf import settings
 from userupload.views import add_category_csv
 from . import views
-from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
+from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, AuthorListView
 
 ON_CODESPACE = settings.ON_CODESPACE
 
@@ -34,6 +34,7 @@ urlpatterns = [
     # Dashboard
     path('dashboard/', views.dashboard_view, name='dashboard'),
     path('categories/', CategoryListView.as_view(), name='categories'),
+    path('authors/', AuthorListView.as_view(), name='authors'),
     path('add-category/', CategoryCreateView.as_view(), name='add-category'),
     path('edit-category/<int:pk>/', CategoryUpdateView.as_view(), name='edit-category'),
     path('delete-category/<int:pk>/', CategoryDeleteView.as_view(),name='delete-category'),
