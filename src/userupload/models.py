@@ -16,6 +16,6 @@ class uploadCSVForm(forms.ModelForm):
         fields = ['file']
         widgets = {
             'file': ClearableFileInput(attrs={
-                'class': "form-control"
+                'class': "form-control d-none"
             })
         }

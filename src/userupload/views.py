@@ -1,11 +1,15 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .user_upload import upload_file
 from django.contrib import messages
+from products.models import Category
 from .models import uploadCSVForm
+from django.urls import reverse_lazy
 import csv
 
 # Create your views here.
 def add_category_csv(request):
+    page_title = 'Bulk Upload'
+    
     if request.method == 'POST':
         form = uploadCSVForm(request.POST, request.FILES)
 
@@ -18,24 +22,27 @@ def add_category_csv(request):
                 reader = csv.reader(f)
                 next(reader)  # Skip the header row
                 for row in reader:
-                    category = row
-                    categories.append({'category': str(category)})
-
-            m = messages.success(request, 'File uploaded successfully!')
-            context = {
-                'categories': categories
-            }
-            return render(request, 'dashboard/page/categories.html', context)
+                    category_name = row[0]
+                    # categories.append({'category': str(category)})
+                    
+                    category, created = Category.objects.get_or_create(name=category_name)
+                    
+            messages.success(request, 'File uploaded successfully!')
+            # print(categories)
+            
+            return HttpResponseRedirect(reverse_lazy('categories'))
         else:
             form = uploadCSVForm()
             context = {
-                'form': form
+                'form': form,
+                'page_title': page_title
             }
-            return(request, context)
+            return(request, 'dashboard/page/userupload.html', context)
     
     else:
         form = uploadCSVForm()
         context = {
             'form': form,
+            'page_title': page_title
         }
         return render(request, 'dashboard/page/userupload.html', context)
