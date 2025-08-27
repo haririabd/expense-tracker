@@ -1,69 +1,4 @@
 {% extends 'dashboard/base/base.html' %}{% load static %}{% block content %}
-<!-- <form class="space-y-6" action="" method="post" enctype="multipart/form-data">
-    <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-        Upload CSV
-    </h5>
-    {% csrf_token %} {{form}}
-    <button type="submit"
-        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        Submit
-    </button>
-</form> -->
-<!-- <div class="card col-12 col-lg-8 my-3 my-lg-5 p-5 mx-auto shadow-lg rounded-5">
-  <div class="card-title text-center">
-    <h3>Bulk Upload: 
-      {% if 'category' in request.path %}
-      Category
-      {% elif 'book' in request.path %}
-      Books
-      {% else %}
-      Publisher
-      {% endif %}
-    </h3>
-    <p class="card-text">
-      <small class="text-body-secondary"
-        >Upload all your data using csv or xlsx file</small
-      >
-    </p>
-  </div>
-  <div class="row g-0 border-bottom mt-5 pb-5">
-    <div class="col-md-8">
-      <h5 class="card-title">Step 1: Download template</h5>
-      <p class="card-text">
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </p>
-    </div>
-    <div class="col-md-4">
-      <div class="card-body d-grid">
-        <a class="btn btn-info rounded-5" href="{% static 'sample/template_categories.csv' %}" role="button">Download Template</a>
-      </div>
-    </div>
-  </div>
-  <div class="row g-0 mt-5 pb-md-5">
-    <div class="col-md-8">
-      <h5 class="card-title">Step 2: Upload template</h5>
-      <p class="card-text">
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </p>
-    </div>
-    <div class="col-md-4">
-      <div class="card-body d-grid">
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div>
-            {{ form.file }}
-          </div>
-          <div class="card-body d-grid">
-        <label for="id_file" class="btn btn-info rounded-5">Choose File</label>
-      </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <button style="width: 95%;" class="btn btn-primary mx-auto rounded-5" type="submit">Upload</button>
-</div> -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="card col-12 col-lg-8 my-3 my-lg-5 p-5 mx-auto shadow-lg rounded-5">
@@ -78,7 +13,7 @@
                 {% endif %}
             </h3>
             <p class="card-text">
-                <small class="text-body-secondary">Upload all your data using csv or xlsx file</small>
+                <small class="text-body-secondary">Upload all your data using csv file</small>
             </p>
         </div>
         <div class="row g-0 border-bottom mt-5 pb-5">
@@ -105,12 +40,8 @@
             </div>
             <div class="col-md-4">
                 <div class="card-body d-grid">
-                    <div>
                         {{ form.file }}
-                    </div>
-                    <div class="card-body d-grid">
-                        <label for="id_file" class="btn btn-info rounded-5">Choose File</label>
-                    </div>
+                        <label for="id_file" class="btn btn-info rounded-5" role="button">Choose File</label>
                 </div>
             </div>
         </div>

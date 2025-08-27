@@ -1,5 +1,5 @@
 {% extends 'dashboard/base/base.html' %}{% load static %} {% block content %}
-<div class="card my-5 mx-auto shadow-lg text-bg-light">
+<div class="card my-3 my-lg-5 p-5 mx-auto shadow-lg text-bg-light">
   <div class="row g-0">
     <div class="col-md-4 d-flex align-items-center justify-content-center">
         <svg class="nav-icon">
@@ -8,8 +8,8 @@
           ></use>
         </svg>
     </div>
-    <div class="col-md-7 p-md-5">
-      <div class="card-body">
+    <div class="col-md-8 p-md-5">
+      <div class="card-body text-center text-md-start">
         <h5 class="card-title">{{page_title}}</h5>
         <p class="card-text mt-5">Warning! You are about to delete a category. Deleting this will also delete all books currently tagged under this category</p>
         <p class="card-text"><small class="text-body-secondary">Category Name: {{object.name}}</small></p>
