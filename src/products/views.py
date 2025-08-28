@@ -4,21 +4,34 @@ from .forms import CategoryForm, AuthorForm
 from .models import Category, Author
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-# Category Views
-class CategoryListView(ListView):
-    model = Category
+# Base Views
+class BaseListView(ListView):
     template_name = 'dashboard/page/listview.html'
-    context_object_name = 'categories'
     
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get the context
         context = super().get_context_data(**kwargs)
-        # Get the count of all Category objects and add it to the context
         context['count'] = self.model.objects.count()
-        # Add your custom context variables
-        context['page_title'] = 'Category List'
-        context['owner'] = 'category'
+        context['page_title'] = self.page_title
+        context['owner'] = self.owner
         return context
+
+class BaseUpdateView(UpdateView):
+    fields = ['name']
+    template_name = 'dashboard/page/single_data_form.html'
+    page_title = ''
+    owner = ''
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = self.page_title
+        context['owner'] = self.owner
+        return context
+
+class CategoryListView(BaseListView):
+    model = Category
+    context_object_name = 'categories'
+    page_title = 'Category List'
+    owner = 'category'
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -31,18 +44,12 @@ class CategoryCreateView(CreateView):
         context['page_title'] = 'Add Category'
         context['owner'] = 'category'
         return context
-
-class CategoryUpdateView(UpdateView):
+    
+class CategoryUpdateView(BaseUpdateView):
     model = Category
-    fields = ['name']
-    template_name = 'dashboard/page/single_data_form.html'
     success_url = reverse_lazy('categories')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = 'Edit Category'
-        context['owner'] = 'category'
-        return context
+    page_title = 'Edit Category'
+    owner = 'category'
 
 class CategoryDeleteView(DeleteView):
     model = Category
@@ -55,18 +62,11 @@ class CategoryDeleteView(DeleteView):
         return context
     
 # Author Views
-class AuthorListView(ListView):
+class AuthorListView(BaseListView):
     model = Author
-    template_name = 'dashboard/page/listview.html'
     context_object_name = 'authors'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['count'] = self.model.objects.count()
-        # Add your custom context variables
-        context['page_title'] = 'Author List'
-        context['owner'] = 'author'
-        return context
+    page_title = 'Author List'
+    owner = 'author'
     
 class AuthorCreateView(CreateView):
     model = Author
@@ -80,17 +80,11 @@ class AuthorCreateView(CreateView):
         context['owner'] = 'author'
         return context
     
-class AuthorUpdateView(UpdateView):
+class AuthorUpdateView(BaseUpdateView):
     model = Author
-    fields = ['name']
-    template_name = 'dashboard/page/single_data_form.html'
     success_url = reverse_lazy('authors')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = 'Edit Author'
-        context['owner'] = 'author'
-        return context
+    page_title = 'Edit Author'
+    owner = 'author'
     
 class AuthorDeleteView(DeleteView):
     model = Author

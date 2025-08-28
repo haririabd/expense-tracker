@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
-from userupload.views import add_category_csv, add_author_csv
+from userupload.views import upload_csv
 from . import views
 from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, AuthorListView, AuthorCreateView, AuthorUpdateView, AuthorDeleteView
 
@@ -44,8 +44,9 @@ urlpatterns = [
     path('delete-category/<int:pk>/', CategoryDeleteView.as_view(),name='delete-category'),
     path('delete-author/<int:pk>/', AuthorDeleteView.as_view(),name='delete-author'),
     # user upload
-    path('add-category/upload/', add_category_csv, name='add-category-csv'),
-    path('add-author/upload/', add_author_csv, name='add-author-csv'),
+    path('add-<str:model_name>/upload/', upload_csv, name='upload-csv'),
+    # path('add-category/upload/', add_category_csv, name='add-category-csv'),
+    # path('add-author/upload/', add_author_csv, name='add-author-csv'),
     # Sample Page
     path('blank/', views.blank_view, name='blank'),
 ]
