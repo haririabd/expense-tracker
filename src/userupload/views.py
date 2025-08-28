@@ -4,7 +4,10 @@ from django.contrib import messages
 from products.models import Category, Author
 from .models import uploadCSVForm
 from django.urls import reverse_lazy
+import chardet
 import csv
+
+# chunk_size = 1000
 
 # Create your views here.
 def upload_csv(request, model_name):
@@ -32,15 +35,19 @@ def upload_csv(request, model_name):
             csv_file = request.FILES['file']
             file_path = upload_file(csv_file)  # Call the upload_file function
             
-            with open(file_path, 'r') as f:
-                reader = csv.reader(f)
-                next(reader)  # Skip the header row
-                for row in reader:
-                    item_name = row[0]
-                    # Dynamically get or create the object for the specified model
-                    target_model.objects.get_or_create(name=item_name)
+            try:
+                with open(file_path, 'r', encoding='utf-8', errors='replace') as f:
+                    reader = csv.reader(f)
+                    next(reader)  # Skip the header row
                     
-            messages.success(request, 'File uploaded successfully!')
+                    for row in reader:
+                        item_name = row[0]
+                        # Dynamically get or create the object for the specified model
+                        target_model.objects.get_or_create(name=item_name)
+                        
+                messages.success(request, 'File uploaded successfully!')
+            except:
+                messages.error(request, 'An encoding error occurred, but the file was proccessed. Some characters may be missing')    
             return HttpResponseRedirect(reverse_lazy(redirect_url_name))
         
         else:
