@@ -17,9 +17,9 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
-from userupload.views import add_category_csv
+from userupload.views import add_category_csv, add_author_csv
 from . import views
-from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, AuthorListView
+from products.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, AuthorListView, AuthorCreateView, AuthorUpdateView, AuthorDeleteView
 
 ON_CODESPACE = settings.ON_CODESPACE
 
@@ -31,15 +31,21 @@ urlpatterns = [
      # Application
     path('', views.index_view, name='index'),
     path('about/', views.about_view, name='about'),
-    # Dashboard
     path('dashboard/', views.dashboard_view, name='dashboard'),
     path('categories/', CategoryListView.as_view(), name='categories'),
     path('authors/', AuthorListView.as_view(), name='authors'),
+    # Adding Data
     path('add-category/', CategoryCreateView.as_view(), name='add-category'),
+    path('add-author/', AuthorCreateView.as_view(), name='add-author'),
+    # Edit Data
     path('edit-category/<int:pk>/', CategoryUpdateView.as_view(), name='edit-category'),
+    path('edit-author/<int:pk>/', AuthorUpdateView.as_view(), name='edit-author'),
+    # Delete Data
     path('delete-category/<int:pk>/', CategoryDeleteView.as_view(),name='delete-category'),
+    path('delete-author/<int:pk>/', AuthorDeleteView.as_view(),name='delete-author'),
     # user upload
     path('add-category/upload/', add_category_csv, name='add-category-csv'),
+    path('add-author/upload/', add_author_csv, name='add-author-csv'),
     # Sample Page
     path('blank/', views.blank_view, name='blank'),
 ]

@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from .forms import CategoryForm
+from .forms import CategoryForm, AuthorForm
 from .models import Category, Author
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
@@ -17,28 +17,31 @@ class CategoryListView(ListView):
         context['count'] = self.model.objects.count()
         # Add your custom context variables
         context['page_title'] = 'Category List'
+        context['owner'] = 'category'
         return context
 
 class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryForm # Link with form we created in forms.py so we can edit the style
-    template_name = 'dashboard/page/category_form.html'
+    template_name = 'dashboard/page/single_data_form.html'
     success_url = reverse_lazy('categories')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Add Category'
+        context['owner'] = 'category'
         return context
 
 class CategoryUpdateView(UpdateView):
     model = Category
     fields = ['name']
-    template_name = 'dashboard/page/category_form.html'
+    template_name = 'dashboard/page/single_data_form.html'
     success_url = reverse_lazy('categories')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Edit Category'
+        context['owner'] = 'category'
         return context
 
 class CategoryDeleteView(DeleteView):
@@ -62,4 +65,39 @@ class AuthorListView(ListView):
         context['count'] = self.model.objects.count()
         # Add your custom context variables
         context['page_title'] = 'Author List'
+        context['owner'] = 'author'
+        return context
+    
+class AuthorCreateView(CreateView):
+    model = Author
+    form_class = AuthorForm # Link with form we created in forms.py so we can edit the style
+    template_name = 'dashboard/page/single_data_form.html'
+    success_url = reverse_lazy('authors')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Add Author'
+        context['owner'] = 'author'
+        return context
+    
+class AuthorUpdateView(UpdateView):
+    model = Author
+    fields = ['name']
+    template_name = 'dashboard/page/single_data_form.html'
+    success_url = reverse_lazy('authors')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Edit Author'
+        context['owner'] = 'author'
+        return context
+    
+class AuthorDeleteView(DeleteView):
+    model = Author
+    template_name = 'dashboard/page/category_confirm_delete.html'
+    success_url = reverse_lazy('authors')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Delete Confirmation'
         return context

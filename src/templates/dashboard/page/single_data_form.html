@@ -7,21 +7,23 @@
     <div class="col-md-9">
       <div class="card-body p-md-5">
         <h5 class="card-title">{{page_title}}</h5>
-        <p class="card-text mt-5">Please enter category name only in below field. This name should be unique and non-repeatable; system will give an error if existing category is being entered again</p>
+        <p class="card-text mt-5">Please enter {{owner}} name in below field. {% if 'category' in owner %}This name should be unique and non-repeatable; system will give an error if existing category is being entered again{% endif %}</p>
         <div class="form-floating">
           <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary">
-                Save Category
+                Save {% if 'category' in owner %}Category{% else %}Author{% endif %}
               </button>
             </div>
           </form>
         </div>
         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-        <a href="{% url 'add-category-csv' %}">
+        {% with url_name='add-'|add:owner|add:'-csv' %}
+          <a href="{% url url_name %}">
         <button class="btn btn-link" type="button">
+        {% endwith %}
           <svg
         class="sidebar-brand-narrow"
         width="25"
