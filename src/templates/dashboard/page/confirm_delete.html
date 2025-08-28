@@ -11,15 +11,20 @@
     <div class="col-md-8 p-md-5">
       <div class="card-body text-center text-md-start">
         <h5 class="card-title">{{page_title}}</h5>
-        <p class="card-text mt-5">Warning! You are about to delete a category. Deleting this will also delete all books currently tagged under this category</p>
-        <p class="card-text"><small class="text-body-secondary">Category Name: {{object.name}}</small></p>
+        {% if 'category' in owner %}
+          <p class="card-text mt-5">Warning! You are about to delete a category. Deleting this will also delete all books currently associated with this category</p>
+          <p class="card-text"><small class="text-body-secondary">Category Name: {{object.name}}</small></p>
+        {% elif 'author' in owner %}
+          <p class="card-text mt-5">Warning! You are about to delete an author. Deleting this will also delete all books currently associated with this author</p>
+          <p class="card-text"><small class="text-body-secondary">Author Name: {{object.name}}</small></p>
+        {% endif %}
         <div class="form-floating">
           <form method="post">
             {% csrf_token %}
             <p>Are you sure?</p>
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-danger">
-                Yes, Delete. Let the world burn 
+                Yes, Delete 
               </button>
             </div>
           </form>

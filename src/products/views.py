@@ -40,6 +40,16 @@ class BaseUpdateView(UpdateView):
         context['owner'] = self.owner
         return context
 
+class BaseDeleteView(DeleteView):
+    template_name = 'dashboard/page/confirm_delete.html'
+    owner = ''
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Delete Confirmation'
+        context['owner'] = self.owner
+        return context
+
 # Category Views
 class CategoryListView(BaseListView):
     model = Category
@@ -60,15 +70,10 @@ class CategoryUpdateView(BaseUpdateView):
     page_title = 'Edit Category'
     owner = 'category'
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(BaseDeleteView):
     model = Category
-    template_name = 'dashboard/page/category_confirm_delete.html'
     success_url = reverse_lazy('categories')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = 'Delete Confirmation'
-        return context
+    owner = 'category'
     
 # Author Views
 class AuthorListView(BaseListView):
@@ -90,12 +95,7 @@ class AuthorUpdateView(BaseUpdateView):
     page_title = 'Edit Author'
     owner = 'author'
     
-class AuthorDeleteView(DeleteView):
+class AuthorDeleteView(BaseDeleteView):
     model = Author
-    template_name = 'dashboard/page/category_confirm_delete.html'
     success_url = reverse_lazy('authors')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = 'Delete Confirmation'
-        return context
+    owner = 'author'

@@ -68,8 +68,8 @@
           <td>{{ a.name }}</td>
           <td>Total</td>
           <td>
-            <a href="">Edit</a> |
-            <a href="">Delete</a>
+            <a href="{% url 'edit-author' a.pk %}">Edit</a> |
+            <a href="{% url 'delete-author' a.pk %}">Delete</a>
           </td>
         </tr>
         {% endfor %}
