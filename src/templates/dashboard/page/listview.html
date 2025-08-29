@@ -1,24 +1,4 @@
 {% extends 'dashboard/base/base.html' %}{% load static %} {% block content %}
-<div class="">
-  {% if messages %}
-  <ul class="alert alert-success">
-    {% for message in messages %}
-    <li
-      {%
-      if
-      message.tags
-      %}
-      class="{{ message.tags }} list-group-item"
-      {%
-      endif
-      %}
-    >
-      {{ message }}
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</div>
 {% if categories %}
 <div class="card my-5">
   <div class="card-header h5">Total: {{count}} categories</div>

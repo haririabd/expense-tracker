@@ -50,7 +50,8 @@
         {% include 'dashboard/base/header.html' %}
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
-            {% block content %}{% endblock content %}
+          {% include 'dashboard/base/message.html' %}
+          {% block content %}{% endblock content %}
         </div>
       </div>
       <footer class="footer px-4">
