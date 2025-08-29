@@ -22,19 +22,17 @@
   <body class="d-flex min-vh-100 text-center">
     <div class="container my-auto col-xl-10 col-xxl-8 px-4 py-5">
       <div class="row align-items-center g-lg-5 py-5">
-        <div class="col-lg-7 text-center text-lg-start">
+        <div class="col text-center text-lg-start">
           <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
             Rumi Press
           </h1>
-          <p class="col-lg-10 fs-4">
-            Below is an example form built entirely with Bootstrap’s form
-            controls. Each required form group has a validation state that can
-            be triggered by attempting to submit the form without completing it.
+          <p class="col-lg-10 fs-4 text-justify">
+            Thank you for visiting Rumi Press webapp. This is an internal tools used by Rumi Press personnel. If you think you should have access, kindly contact our admin <a href="/dashboard/">here</a>
           </p>
-          <a class="btn btn-primary" href="{% url 'account_login' %}">Log In</a>
+          <a class="btn px-5 btn-secondary" href="{% url 'account_login' %}">Log In</a>
         </div>
-        <div class="col-md-10 mx-auto col-lg-5">
-          <img src="{% static 'img/Untitleddesign_left.png' %}" alt="" width="150%" srcset="">
+        <div class="col-md-10 mx-auto col-lg-7">
+          <img class="img-fluid" src="{% static 'img/event.png' %}" alt="" srcset="">
         </div>
       </div>
     <script
