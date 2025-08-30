@@ -50,8 +50,12 @@
     {% endblock extra_head %}
   </head>
 {% block body %}
-    {% block content %}
-    {% endblock content %}
+  <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
     <!-- CoreUI and necessary plugins-->
     <script src="{% static 'vendors/assets/js/coreui.bundle.min.js' %}"></script>
     <script src="{% static 'vendors/assets/js/simplebar.min.js' %}"></script>

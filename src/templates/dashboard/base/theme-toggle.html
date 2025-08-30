@@ -1,0 +1,40 @@
+{% load static %}
+<header class="header header-sticky bg-transparent border-0 p-0 mb-4">
+        <div class="container-fluid px-4">
+          <ul class="header-nav ms-auto">
+            
+          </ul>
+          <ul class="header-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+                <svg class="icon icon-lg theme-icon-active">
+                  <use xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-contrast' %}"></use>
+                </svg>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
+                <li>
+                  <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="light">
+                    <svg class="icon icon-lg me-3">
+                      <use xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-sun' %}"></use>
+                    </svg>Light
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="dark">
+                    <svg class="icon icon-lg me-3">
+                      <use xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-moon' %}"></use>
+                    </svg>Dark
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item d-flex align-items-center active" type="button" data-coreui-theme-value="auto">
+                    <svg class="icon icon-lg me-3">
+                      <use xlink:href="{% static 'vendors/assets/icons/sprites/free.svg#cil-contrast' %}"></use>
+                    </svg>Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </header>
