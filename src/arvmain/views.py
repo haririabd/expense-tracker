@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 def index_view(request, *args, **kwargs):
@@ -19,6 +20,7 @@ def about_view(request, *args, **kwargs):
     return render(request, html_template, context)
 
 # Dashboard Views Start
+@login_required
 def dashboard_view(request, *args, **kwargs):
     page_title = 'Dashboard'
     html_template = 'dashboard/page/blank.html'

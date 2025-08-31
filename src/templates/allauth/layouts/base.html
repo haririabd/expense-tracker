@@ -1,86 +1,77 @@
 {% load i18n %}
+{% load static %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v5.3.0
+* @link https://coreui.io/product/free-bootstrap-admin-template/
+* Copyright (c) 2025 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
+-->
+
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>
             {% block head_title %}
-            {% endblock head_title %}
-        </title>
-        {% block extra_head %}
-        {% endblock extra_head %}
-    </head>
-    <body>
-        {% block body %}
-            {% if messages %}
-                <div>
-                    <strong>{% trans "Messages:" %}</strong>
-                    <ul>
-                        {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-            <div>
-                <strong>{% trans "Menu:" %}</strong>
-                <ul>
-                    {% if user.is_authenticated %}
-                        {% url 'account_email' as email_url_ %}
-                        {% if email_url_ %}
-                            <li>
-                                <a href="{{ email_url_ }}">{% trans "Change Email" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'account_change_password' as change_password_url_ %}
-                        {% if change_password_url_ %}
-                            <li>
-                                <a href="{{ change_password_url_ }}">{% trans "Change Password" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'socialaccount_connections' as connections_url_ %}
-                        {% if connections_url_ %}
-                            <li>
-                                <a href="{{ connections_url_ }}">{% trans "Account Connections" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'mfa_index' as mfa_url_ %}
-                        {% if mfa_url_ %}
-                            <li>
-                                <a href="{{ mfa_url_ }}">{% trans "Two-Factor Authentication" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'usersessions_list' as usersessions_list_url_ %}
-                        {% if usersessions_list_url_ %}
-                            <li>
-                                <a href="{{ usersessions_list_url_ }}">{% trans "Sessions" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'account_logout' as logout_url_ %}
-                        {% if logout_url_ %}
-                            <li>
-                                <a href="{{ logout_url_ }}">{% trans "Sign Out" %}</a>
-                            </li>
-                        {% endif %}
-                    {% else %}
-                        {% url 'account_login' as login_url_ %}
-                        {% if login_url_ %}
-                            <li>
-                                <a href="{{ login_url_ }}">{% trans "Sign In" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'account_signup' as signup_url_ %}
-                        {% if signup_url_ %}
-                            <li>
-                                <a href="{{ signup_url_ }}">{% trans "Sign Up" %}</a>
-                            </li>
-                        {% endif %}
-                    {% endif %}
-                </ul>
-            </div>
-            {% block content %}
-            {% endblock content %}
-        {% endblock body %}
+            {% endblock head_title %} - Rumi Press
+    </title>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'vendors/assets/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'vendors/assets/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'vendors/assets/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'vendors/assets/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'vendors/assets/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'vendors/assets/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'vendors/assets/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'vendors/assets/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'vendors/assets/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'vendors/assets/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'vendors/assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'vendors/assets/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'vendors/assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'vendors/assets/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'vendors/assets/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'vendors/assets/css/simplebar.css' %}">
+    <!-- Main styles for this application-->
+    <link href="{% static 'vendors/assets/css/style.css' %}" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <script src="{% static 'vendors/assets/js/config.js' %}"></script>
+    <script src="{% static 'vendors/assets/js/color-modes.js' %}"></script>
+    {% block extra_head %}
+    {% endblock extra_head %}
+  </head>
+{% block body %}
+  <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+    <!-- CoreUI and necessary plugins-->
+    <script src="{% static 'vendors/assets/js/coreui.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors/assets/js/simplebar.min.js' %}"></script>
+    <script>
+      const header = document.querySelector('header.header');
+      
+      document.addEventListener('scroll', () => {
+        if (header) {
+          header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
+        }
+      });
+      
+    </script>
+    <script> 
+    </script>
+{% endblock body %}
         {% block extra_body %}
         {% endblock extra_body %}
-    </body>
 </html>
