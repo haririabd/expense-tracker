@@ -30,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Starting Dropbox download...")
 
-        DROPBOX_TOKEN = config('DROPBOX_TOKEN')
+        DROPBOX_ACCESS_TOKEN = config('DROPBOX_ACCESS_TOKEN')
 
         # Access the user-provided arguments from the options dictionary.
         dbx_source_folder = options['dbx_source_folder']
@@ -43,7 +43,7 @@ class Command(BaseCommand):
         self.stdout.write(f"Downloading from Dropbox folder: {dbx_source_folder} to local path: {local_dest_path}")
 
         try:
-            downloader.download_folder_from_dropbox(dbx_source_folder, local_dest_path, DROPBOX_TOKEN)
+            downloader.download_folder_from_dropbox(dbx_source_folder, local_dest_path, DROPBOX_ACCESS_TOKEN)
             self.stdout.write(self.style.SUCCESS("Successfully downloaded vendor files from Dropbox."))
         except KeyboardInterrupt:
             self.stdout.write(self.style.WARNING('Process interrupted by user. Exiting..'))
