@@ -56,7 +56,7 @@ ENV DROPBOX_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
 # run only commands that do not need the database. can remove when we use s3
 # RUN python manage.py vendor_pull
 RUN python manage.py vendor_download /expense-tracker/
-# RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 ARG DJANGO_SUPERUSER_USERNAME
 ARG DJANGO_SUPERUSER_EMAIL
