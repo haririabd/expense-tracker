@@ -48,9 +48,14 @@ ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
 ARG DJANGO_DEBUG=0
 ENV DJANGO_DEBUG=${DJANGO_DEBUG}
 
+# New: Add build argument for the Dropbox access token
+ARG DROPBOX_ACCESS_TOKEN
+ENV DROPBOX_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
+
 # database isn't available during build
 # run only commands that do not need the database. can remove when we use s3
 # RUN python manage.py vendor_pull
+RUN python manage.py vendor_download /expense-tracker/
 RUN python manage.py collectstatic --noinput
 
 ARG DJANGO_SUPERUSER_USERNAME
