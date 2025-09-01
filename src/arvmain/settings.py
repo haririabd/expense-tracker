@@ -21,12 +21,17 @@ ON_RAILWAY = config('ON_RAILWAY', default=False, cast=bool)
 ON_CODESPACE = config('ON_CODESPACE', default=False, cast=bool)
 
 # Email config
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST=config('EMAIL_HOST', cast=str, default=None)
-EMAIL_PORT=config('EMAIL_PORT', cast=str, default='587') # Use 465 if use SSL
-EMAIL_USE_TLS=config('EMAIL_USE_TLS', cast=bool, default=True)
-EMAIL_HOST_USER=config('EMAIL_HOST_USER', cast=str, default=None)
-EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD', cast=str, default=None)
+# ZeptoMail API Backend
+EMAIL_BACKEND = 'helpers.zeptomail_backend.ZeptoMailBackend'
+ZEPTOMAIL_API_URL='https://api.zeptomail.com/v1.1/email'
+ZEPTOMAIL_API_TOKEN=config('ZEPTOMAIL_API_TOKEN')
+
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST=config('EMAIL_HOST', cast=str, default=None)
+# EMAIL_PORT=config('EMAIL_PORT', cast=str, default='587') # Use 465 if use SSL
+# EMAIL_USE_TLS=config('EMAIL_USE_TLS', cast=bool, default=True)
+# EMAIL_HOST_USER=config('EMAIL_HOST_USER', cast=str, default=None)
+# EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD', cast=str, default=None)
 DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL', default=None)
 SERVER_EMAIL=config('DEFAULT_FROM_EMAIL', default=None)
 
