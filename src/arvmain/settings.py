@@ -24,7 +24,7 @@ ON_CODESPACE = config('ON_CODESPACE', default=False, cast=bool)
 # ZeptoMail API Backend
 EMAIL_BACKEND = 'helpers.zeptomail_backend.ZeptoMailBackend'
 ZEPTOMAIL_API_URL='https://api.zeptomail.com/v1.1/email'
-ZEPTOMAIL_API_TOKEN=config('ZEPTOMAIL_API_TOKEN')
+ZEPTOMAIL_API_TOKEN=config('ZEPTOMAIL_API_TOKEN', default='')
 
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST=config('EMAIL_HOST', cast=str, default=None)
